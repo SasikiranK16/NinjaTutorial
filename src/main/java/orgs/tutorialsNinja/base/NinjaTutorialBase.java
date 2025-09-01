@@ -3,11 +3,14 @@ package orgs.tutorialsNinja.base;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Properties;
 
+import org.functionalities.RegisterFunctionality;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +20,12 @@ public class NinjaTutorialBase {
 	public static Properties properties;
 	public static FileInputStream fileInputStream;
 	public static WebDriver driver;
-
+	public static RegisterFunctionality registerFunctionality;
+	public static Actions actions;
+	public static WebDriver commnonDrivers(WebDriver driver) {
+		registerFunctionality = new RegisterFunctionality(driver);
+		return driver;
+	}
 	public static Properties getPropertiesDetails(String fileName) {
 		properties = new Properties();
 		try {
@@ -42,6 +50,9 @@ public class NinjaTutorialBase {
 		}
 		driver.get(properties.getProperty("url"));
 		logs.info("Navigating to the URL Link");
+		commnonDrivers(driver);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		driver.manage().window().maximize();
 		return driver;
 	}
 

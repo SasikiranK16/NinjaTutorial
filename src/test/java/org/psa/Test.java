@@ -19,5 +19,6 @@ public class Test extends NinjaTutorialBase {
 	public void testName() throws Exception {
 		logs.info("Entered into :"+logs.getName());
 		logs.warn("Test Case Passed Successfully");
+		logs.warn("hello");
 	}
 }

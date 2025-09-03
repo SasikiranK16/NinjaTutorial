@@ -27,7 +27,7 @@ public class Test extends NinjaTutorialBase {
 		
 		registerFunctionality.dropdownAction("Register");
 		registerFunctionality.RegisterForm("Hello","World","Hello@gmail.com","248195","Hello","Hello");
-		Float a;
+		
 	}
 	
 }

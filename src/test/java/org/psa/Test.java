@@ -1,10 +1,5 @@
 package org.psa;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.jspecify.annotations.Nullable;
-import org.openqa.selenium.By;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeSuite;

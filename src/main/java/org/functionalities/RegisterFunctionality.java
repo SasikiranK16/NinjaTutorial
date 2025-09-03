@@ -30,45 +30,58 @@ public class RegisterFunctionality extends NinjaTutorialBase {
 		actions.moveToElement(eles).click().build().perform();
 		return actions;
 	}
-
-
-	public void RegisterForm(String firstName,String lastName,String emailid,String telephoneNum,String password,String confirmPassword) {
-
-		List<WebElement>els = driver.findElements(By.tagName("input"));
-		List<WebElement>radios = driver.findElements(By.xpath("//*[starts-with(@name,'newsletter')]"));
-		els.stream().forEach((p)->{
-			if (p.getAttribute("name").contains("firstname")) {
-				p.sendKeys(firstName);
-				logs.warn("First Name Inserted Successfully!!");
-			}
-			else if(p.getAttribute("name").contains("lastname")) {
-				p.sendKeys(lastName);
-				logs.warn("Last Name Inserted Successfully!!");
-			}
-			else if(p.getAttribute("name").contains("emai")) {
-				p.sendKeys(emailid);
-				logs.warn("Email Id Inserted Successfully!!");
-			}
-			else if(p.getAttribute("name").contains("telephone")) {
-				p.sendKeys(telephoneNum);
-				logs.warn("Telephone Number Inserted Successfully!!");
+	
+	public void LoginForm(String emailAddress,String password) {
+		List<WebElement>eles = driver.findElements(By.tagName("input"));
+		List<WebElement>el = driver.findElements(By.tagName("input"));
+		eles.forEach((p)->{
+			if (p.getAttribute("name").contains("email")) {
+				p.sendKeys(emailAddress);
+				logs.info("EmailId Address Successfully Entered!!");
 			}
 			else if(p.getAttribute("name").contains("password")) {
 				p.sendKeys(password);
-				logs.warn("Password Inserted Successfully!!!");
+				logs.info("Password Entered Successfully!!!");
 			}
-			else if(p.getAttribute("name").contains("confirm")) {
-				p.sendKeys(confirmPassword);
-				logs.info("Confirm Password Inserted Successfully!!");
-			}
-			else if(p.getAttribute("name").contains("agree")) {
-				p.click();
-			}
-			else if(p.getAttribute("value").contains("Continue")){
+		});
+		el.forEach((p)->{
+			if (p.getAttribute("value").contains("Login")) {
 				p.click();
 			}
 		});
-		radios.forEach((a)->{
+	}
+
+	public void RegisterForm(String firstName, String lastName, String emailid, String telephoneNum, String password,
+			String confirmPassword) {
+
+		List<WebElement> els = driver.findElements(By.tagName("input"));
+		List<WebElement> radios = driver.findElements(By.xpath("//*[starts-with(@name,'newsletter')]"));
+		els.stream().forEach((p) -> {
+			if (p.getAttribute("name").contains("firstname")) {
+				p.sendKeys(firstName);
+				logs.warn("First Name Inserted Successfully!!");
+			} else if (p.getAttribute("name").contains("lastname")) {
+				p.sendKeys(lastName);
+				logs.warn("Last Name Inserted Successfully!!");
+			} else if (p.getAttribute("name").contains("emai")) {
+				p.sendKeys(emailid);
+				logs.warn("Email Id Inserted Successfully!!");
+			} else if (p.getAttribute("name").contains("telephone")) {
+				p.sendKeys(telephoneNum);
+				logs.warn("Telephone Number Inserted Successfully!!");
+			} else if (p.getAttribute("name").contains("password")) {
+				p.sendKeys(password);
+				logs.warn("Password Inserted Successfully!!!");
+			} else if (p.getAttribute("name").contains("confirm")) {
+				p.sendKeys(confirmPassword);
+				logs.info("Confirm Password Inserted Successfully!!");
+			} else if (p.getAttribute("name").contains("agree")) {
+				p.click();
+			} else if (p.getAttribute("value").contains("Continue")) {
+				p.click();
+			}
+		});
+		radios.forEach((a) -> {
 			if (a.getAttribute("value").contains("1")) {
 				a.click();
 			}
